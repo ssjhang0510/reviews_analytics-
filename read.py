@@ -4,8 +4,21 @@ with open('reviews.txt', 'r') as f:
 	for line in f:
 		data.append(line)
 		count += 1
-		if count % 1000 == 0:
+		if count % 1000 == 0: # %用來求餘數 ,讀一千筆才印出一次
 			print(len(data))
-print(len(data))
-print(data[0])
-print(data[1])
+print('檔案讀取完了，總共有',len(data), '筆資料')
+
+#計算留言的平均長度
+sum_len = 0
+for d in data:
+	sum_len = sum_len + len(d)
+
+print('平均留言長度是', sum_len/len(data))
+
+#清單的概念，篩出多少筆留言長度少於100
+new = []
+for d in data:
+ 	if len(d) < 100:
+ 		new.append(d)
+print('一共有',len(new),'筆留言長度小於100')
+print(new[0])
