@@ -7,6 +7,8 @@ with open('reviews.txt', 'r') as f:
 		if count % 1000 == 0: # %用來求餘數 ,讀一千筆才印出一次
 			print(len(data))
 print('檔案讀取完了，總共有',len(data), '筆資料')
+print(data[0])
+
 
 #計算留言的平均長度
 sum_len = 0
@@ -41,3 +43,29 @@ print(bad)
 bad = []
 for d in data:
 	bad.append('bad' in d)
+
+
+#文字計數
+wc = {} #word_count
+for d in data:
+	words = d.split()  #spli預設空白建
+	for word in words:
+		if word in wc:
+			wc[word] += 1
+		else:
+			wc[word] = 1 #新增key進wc字典
+for word in wc:
+	if wc[word] > 1000000:
+		print(word, wc[word])
+print(len(wc))
+print(wc['Allen'])
+
+while True:
+	word = input('請問你想查什麼字: ')
+	if word == 'q':
+		break
+	if word in wc:
+		print(word, '出現過的次數為', wc[word])
+	else:
+		print('這個字沒出現過喔')
+print('感謝使用')
